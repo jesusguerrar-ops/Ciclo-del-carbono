@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Ciclo del Carbono - Juego Educativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+  <div id="confetti-layer"></div>
+
+  <!-- ===================== MENU PRINCIPAL ===================== -->
+  <section id="screen-menu" class="screen active">
+    <div class="menu-bg">
+      <div class="sun">☀️</div>
+      <span class="cloud c1">☁️</span>
+      <span class="cloud c2">☁️</span>
+      <span class="cloud c3">☁️</span>
+      <span class="star s1">✨</span>
+      <span class="star s2">⭐</span>
+      <span class="star s3">✨</span>
+      <div class="hills"></div>
+    </div>
+
+    <div class="menu-content">
+      <div class="mascot mascot-big mood-happy" id="mascot-menu">
+        <div class="mascot-atom atom-left"></div>
+        <div class="mascot-atom atom-right"></div>
+        <div class="mascot-body">
+          <div class="mascot-eye eye-left"><div class="mascot-pupil"></div></div>
+          <div class="mascot-eye eye-right"><div class="mascot-pupil"></div></div>
+          <div class="mascot-cheek cheek-left"></div>
+          <div class="mascot-cheek cheek-right"></div>
+          <div class="mascot-mouth"></div>
+        </div>
+        <div class="mascot-arm arm-left"></div>
+        <div class="mascot-arm arm-right"></div>
+      </div>
+      <div class="mascot-bubble bubble-top" id="bubble-menu">¡Hola! Soy Carbo 🫧 ¿Listo para viajar por el ciclo del carbono?</div>
+
+      <h1>🌍 El Ciclo del Carbono</h1>
+      <p class="subtitle">Aprende jugando cómo viaja el carbono por el planeta</p>
+
+      <div class="score-badge">
+        <span>⭐ Puntaje total:</span>
+        <span id="total-score">0</span>
+      </div>
+
+      <div class="game-grid">
+        <button class="game-card" data-game="1">
+          <span class="icon">🌎</span>
+          <span class="title">1. Elige el destino del carbono</span>
+          <span class="desc">Guía al CO₂ hacia su reservorio correcto</span>
+        </button>
+        <button class="game-card" data-game="2">
+          <span class="icon">⚡</span>
+          <span class="title">2. ¿Qué proceso está ocurriendo?</span>
+          <span class="desc">Identifica el proceso en cada escena</span>
+        </button>
+        <button class="game-card" data-game="3">
+          <span class="icon">🔥</span>
+          <span class="title">3. El planeta está en peligro</span>
+          <span class="desc">Mantén el equilibrio del planeta</span>
+        </button>
+        <button class="game-card" data-game="4">
+          <span class="icon">🧩</span>
+          <span class="title">4. Arma la cadena del cambio climático</span>
+          <span class="desc">Ordena las piezas correctamente</span>
+        </button>
+        <button class="game-card" data-game="5">
+          <span class="icon">🚨</span>
+          <span class="title">5. Reto final: salva el ciclo</span>
+          <span class="desc">60 segundos para actuar rápido</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== JUEGO 1 ===================== -->
+  <section id="screen-game1" class="screen">
+    <header class="game-header">
+      <button class="btn-back">⬅ Menú</button>
+      <h2>🌎 Elige el destino del carbono</h2>
+      <div class="hud"><span>Puntos: <b id="g1-score">0</b></span> <span>Ronda: <b id="g1-round">1</b>/8</span></div>
+    </header>
+
+    <div class="mascot-row">
+      <div class="mascot mascot-small mood-neutral" id="mascot-g1">
+        <div class="mascot-atom atom-left"></div>
+        <div class="mascot-atom atom-right"></div>
+        <div class="mascot-body">
+          <div class="mascot-eye eye-left"><div class="mascot-pupil"></div></div>
+          <div class="mascot-eye eye-right"><div class="mascot-pupil"></div></div>
+          <div class="mascot-mouth"></div>
+        </div>
+      </div>
+      <div class="mascot-bubble" id="bubble-g1">Observa bien la situación y elige el reservorio correcto 🧐</div>
+    </div>
+
+    <div class="game-body g1-body">
+      <div class="co2-stage">
+        <div class="co2-molecule" id="g1-co2">CO₂</div>
+      </div>
+
+      <div class="g1-situation" id="g1-situation">Cargando situación...</div>
+
+      <div class="destinations">
+        <button class="dest-btn" data-dest="planta">🌱<br>Planta</button>
+        <button class="dest-btn" data-dest="oceano">🌊<br>Océano</button>
+        <button class="dest-btn" data-dest="rocas">🪨<br>Rocas</button>
+        <button class="dest-btn" data-dest="atmosfera">🌬️<br>Atmósfera</button>
+      </div>
+
+      <div class="feedback" id="g1-feedback"></div>
+      <button class="btn-next" id="g1-next" style="display:none;">Siguiente ➡</button>
+    </div>
+  </section>
+
+  <!-- ===================== JUEGO 2 ===================== -->
+  <section id="screen-game2" class="screen">
+    <header class="game-header">
+      <button class="btn-back">⬅ Menú</button>
+      <h2>⚡ ¿Qué proceso está ocurriendo?</h2>
+      <div class="hud"><span>Puntos: <b id="g2-score">0</b></span> <span>Ronda: <b id="g2-round">1</b>/6</span></div>
+    </header>
+
+    <div class="mascot-row">
+      <div class="mascot mascot-small mood-neutral" id="mascot-g2">
+        <div class="mascot-atom atom-left"></div>
+        <div class="mascot-atom atom-right"></div>
+        <div class="mascot-body">
+          <div class="mascot-eye eye-left"><div class="mascot-pupil"></div></div>
+          <div class="mascot-eye eye-right"><div class="mascot-pupil"></div></div>
+          <div class="mascot-mouth"></div>
+        </div>
+      </div>
+      <div class="mascot-bubble" id="bubble-g2">¿Qué proceso crees que es este? 🔍</div>
+    </div>
+
+    <div class="game-body g2-body">
+      <div class="scene-box" id="g2-scene">🌱 + CO₂ → 🍃</div>
+      <p class="instructions">Escoge el proceso correcto:</p>
+
+      <div class="options" id="g2-options"></div>
+
+      <div class="explain-box" id="g2-explain" style="display:none;"></div>
+      <button class="btn-next" id="g2-next" style="display:none;">Siguiente ➡</button>
+    </div>
+  </section>
+
+  <!-- ===================== JUEGO 3 ===================== -->
+  <section id="screen-game3" class="screen">
+    <header class="game-header">
+      <button class="btn-back">⬅ Menú</button>
+      <h2>🔥 El planeta está en peligro</h2>
+      <div class="hud"><span>Puntos: <b id="g3-score">0</b></span> <span>Situación: <b id="g3-round">1</b>/6</span></div>
+    </header>
+
+    <div class="game-body g3-body">
+      <div class="balance-panel">
+        <div class="mascot earth-mascot mood-happy" id="earth-g3">
+          <div class="mascot-body earth-body">
+            <div class="continent c1"></div><div class="continent c2"></div><div class="continent c3"></div>
+            <div class="mascot-eye eye-left"><div class="mascot-pupil"></div></div>
+            <div class="mascot-eye eye-right"><div class="mascot-pupil"></div></div>
+            <div class="mascot-mouth"></div>
+            <div class="sweat-drop"></div>
+          </div>
+        </div>
+        <div class="balance-label">EQUILIBRIO DEL PLANETA</div>
+        <div class="balance-bar-track">
+          <div class="balance-bar-fill" id="g3-bar"></div>
+        </div>
+        <div class="balance-numbers">
+          <span>CO₂: <b id="g3-co2">400</b> ppm</span>
+          <span id="g3-status">🌎 Estable</span>
+        </div>
+      </div>
+
+      <div class="crisis-card" id="g3-crisis">Cargando situación...</div>
+
+      <p class="instructions">¿Qué acción tomarías para mantener el equilibrio?</p>
+      <div class="actions-grid">
+        <button class="action-btn" data-action="controlar">🏭➡️🌫️<br>Controlar emisiones</button>
+        <button class="action-btn" data-action="restaurar">🌳<br>Restaurar ecosistemas</button>
+        <button class="action-btn" data-action="residuos">♻️<br>Gestionar residuos</button>
+        <button class="action-btn" data-action="eficiencia">💡<br>Optimizar eficiencia energética</button>
+      </div>
+
+      <div class="feedback" id="g3-feedback"></div>
+      <button class="btn-next" id="g3-next" style="display:none;">Siguiente situación ➡</button>
+    </div>
+  </section>
+
+  <!-- ===================== JUEGO 4 ===================== -->
+  <section id="screen-game4" class="screen">
+    <header class="game-header">
+      <button class="btn-back">⬅ Menú</button>
+      <h2>🧩 Arma la cadena del cambio climático</h2>
+      <div class="hud"><span>Intentos: <b id="g4-tries">0</b></span></div>
+    </header>
+
+    <div class="mascot-row">
+      <div class="mascot mascot-small mood-neutral" id="mascot-g4">
+        <div class="mascot-atom atom-left"></div>
+        <div class="mascot-atom atom-right"></div>
+        <div class="mascot-body">
+          <div class="mascot-eye eye-left"><div class="mascot-pupil"></div></div>
+          <div class="mascot-eye eye-right"><div class="mascot-pupil"></div></div>
+          <div class="mascot-mouth"></div>
+        </div>
+      </div>
+      <div class="mascot-bubble" id="bubble-g4">Arrastra las piezas en el orden correcto, de causa a efecto 🧩</div>
+    </div>
+
+    <div class="game-body g4-body">
+      <div class="chain-target" id="g4-target"></div>
+
+      <div class="pieces-pool" id="g4-pool"></div>
+
+      <div class="feedback" id="g4-feedback"></div>
+      <div class="g4-controls">
+        <button class="btn-secondary" id="g4-check">✅ Verificar orden</button>
+        <button class="btn-secondary" id="g4-reset">🔄 Reiniciar</button>
+      </div>
+      <button class="btn-next" id="g4-next" style="display:none;">Ir al reto final ➡</button>
+    </div>
+  </section>
+
+  <!-- ===================== JUEGO 5 ===================== -->
+  <section id="screen-game5" class="screen">
+    <header class="game-header">
+      <button class="btn-back">⬅ Menú</button>
+      <h2>🚨 Reto final: salva el ciclo</h2>
+      <div class="hud"><span>Puntos: <b id="g5-score">0</b></span> <span>⏱️ <b id="g5-timer">60</b>s</span></div>
+    </header>
+
+    <div class="game-body g5-body">
+      <div id="g5-intro">
+        <div class="mascot mascot-small mood-excited" id="mascot-g5-intro" style="margin:0 auto 10px;">
+          <div class="mascot-atom atom-left"></div>
+          <div class="mascot-atom atom-right"></div>
+          <div class="mascot-body">
+            <div class="mascot-eye eye-left"><div class="mascot-pupil"></div></div>
+            <div class="mascot-eye eye-right"><div class="mascot-pupil"></div></div>
+            <div class="mascot-mouth"></div>
+          </div>
+        </div>
+        <p class="instructions">Tienes <b>60 segundos</b>. Van a aparecer situaciones que dañan el ciclo del carbono. Elige rápido la acción correcta antes de que se acabe el tiempo. ¡Cada acierto suma, cada error resta salud al planeta!</p>
+        <button class="btn-next" id="g5-start">🚀 Comenzar reto</button>
+      </div>
+
+      <div id="g5-play" style="display:none;">
+        <div class="planet-health">
+          <div class="mascot earth-mascot mood-happy" id="earth-g5">
+            <div class="mascot-body earth-body">
+              <div class="continent c1"></div><div class="continent c2"></div><div class="continent c3"></div>
+              <div class="mascot-eye eye-left"><div class="mascot-pupil"></div></div>
+              <div class="mascot-eye eye-right"><div class="mascot-pupil"></div></div>
+              <div class="mascot-mouth"></div>
+              <div class="sweat-drop"></div>
+            </div>
+          </div>
+          <span>❤️ Salud del planeta</span>
+          <div class="health-track"><div class="health-fill" id="g5-health"></div></div>
+        </div>
+
+        <div class="crisis-card" id="g5-situation">...</div>
+
+        <div class="actions-grid" id="g5-actions">
+          <button class="action-btn" data-action="controlar">🏭➡️🌫️<br>Controlar emisiones</button>
+          <button class="action-btn" data-action="restaurar">🌳<br>Restaurar ecosistemas</button>
+          <button class="action-btn" data-action="residuos">♻️<br>Gestionar residuos</button>
+          <button class="action-btn" data-action="eficiencia">💡<br>Optimizar eficiencia energética</button>
+        </div>
+
+        <div class="feedback" id="g5-feedback"></div>
+      </div>
+
+      <div id="g5-end" style="display:none;">
+        <h3 id="g5-end-title">¡Tiempo!</h3>
+        <p id="g5-end-msg"></p>
+        <button class="btn-next" id="g5-restart">🔄 Jugar de nuevo</button>
+        <button class="btn-secondary" id="g5-menu">⬅ Volver al menú</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
